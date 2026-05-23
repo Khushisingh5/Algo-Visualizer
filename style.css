@@ -1,0 +1,211 @@
+/* Core Styling Architecture */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+:root {
+    --bg-dark: #060608;
+    --bg-card: #0d0e12;
+    --bg-input: #14161f;
+    --text-main: #f3f4f6;
+    --text-muted: #6b7280;
+    --accent-neon: #00f2fe;       
+    --accent-active: #ff007f;     
+    --accent-success: #00ff87;    
+    --border-color: #1a1d2c;
+    --neon-glow: rgba(0, 242, 254, 0.2);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Authentication Wrappers */
+.auth-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at 50% 50%, #111322 0%, var(--bg-dark) 80%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.auth-box {
+    background: var(--bg-card);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+}
+
+/* Welcome Hub Component Extensions */
+.hub-box {
+    max-width: 520px;
+    text-align: center;
+}
+.welcome-heading {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.03em;
+}
+.neon-text {
+    color: var(--accent-neon);
+    text-shadow: 0 0 15px var(--neon-glow);
+}
+.hub-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+.metric-card {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: left;
+}
+.metric-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.metric-val {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+.launch-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+}
+
+.logo-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--accent-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-neon);
+}
+
+.continuous-glow { animation: pulse 2s infinite ease-in-out; }
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; box-shadow: 0 0 15px var(--accent-neon); }
+}
+
+.auth-subtitle { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 2rem; }
+.input-group { margin-bottom: 1.5rem; text-align: left;}
+.input-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+.input-group input {
+    width: 100%; background: var(--bg-input); border: 1px solid var(--border-color);
+    padding: 0.85rem; border-radius: 8px; color: var(--text-main); outline: none; transition: border 0.25s;
+}
+.input-group input:focus { border-color: var(--accent-neon); box-shadow: 0 0 10px var(--neon-glow); }
+#auth-btn { width: 100%; margin-top: 0.5rem; }
+.auth-switch { margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+.auth-switch span { color: var(--accent-neon); cursor: pointer; text-decoration: underline; }
+
+/* Dashboard Structural Grid */
+.dashboard { width: 100vw; height: 100vh; display: flex; position: relative; z-index: 1; }
+.sidebar {
+    width: 350px; background: var(--bg-card); border-right: 1px solid var(--border-color);
+    padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 2rem; overflow-y: auto;
+}
+.sidebar-header { display: flex; align-items: center; gap: 0.75rem; }
+.control-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.control-group label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+.label-row { display: flex; justify-content: space-between; }
+#speed-value { font-family: monospace; color: var(--accent-neon); font-size: 0.8rem; }
+
+select, #runtime-argument, #custom-input-field {
+    width: 100%; background: var(--bg-input); border: 1px solid var(--border-color);
+    color: var(--text-main); padding: 0.8rem; border-radius: 8px; outline: none; font-size: 0.9rem;
+}
+
+.input-row { display: flex; gap: 0.5rem; }
+.sub-btn { padding: 0 1rem; }
+.hint { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+/* Interactive Triggers */
+button { font-size: 0.9rem; font-weight: 600; padding: 0.85rem; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s; }
+.pop-btn { background: var(--accent-neon); color: #000; }
+.pop-btn:hover:not(:disabled) { box-shadow: 0 0 15px var(--accent-neon); transform: translateY(-1px); }
+.pop-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.sec-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+.sec-btn:hover:not(:disabled) { background: var(--bg-input); }
+.action-buttons { display: flex; flex-direction: column; gap: 0.75rem; }
+.logout-btn { background: transparent; color: #f87171; text-align: left; padding: 0.5rem 0; margin-top: auto; }
+
+/* Visual Workspace Canvas Engine */
+.visualizer-area { flex-grow: 1; padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.terminal-header { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; display: flex; align-items: center; gap: 1.5rem; }
+.window-dots { display: flex; gap: 6px; }
+.window-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.dot-red { background: #ff5f56; } .dot-amber { background: #ffbd2e; } .dot-green { background: #27c93f; }
+.status-box { font-family: monospace; font-size: 0.85rem; color: var(--text-main); text-overflow: ellipsis; overflow: hidden; }
+
+.canvas {
+    flex-grow: 1; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color);
+    display: flex; align-items: flex-end; justify-content: center; gap: 10px; padding: 3rem; position: relative;
+}
+
+/* Visualization Elements */
+.bar {
+    width: 45px; background: linear-gradient(180deg, var(--accent-neon) 0%, rgba(0,242,254,0.2) 100%);
+    border-radius: 6px 6px 0 0; display: flex; justify-content: center; align-items: flex-start;
+    padding-top: 10px; font-family: monospace; font-size: 0.8rem; font-weight: 700; color: #000;
+    transition: all 0.25s ease; box-shadow: 0 4px 10px rgba(0,242,254,0.1);
+}
+.bar.comparing { background: linear-gradient(180deg, var(--accent-active) 0%, rgba(255,0,127,0.2) 100%) !important; color: #fff; }
+.bar.sorted { background: linear-gradient(180deg, var(--accent-success) 0%, rgba(0,255,135,0.2) 100%) !important; }
+
+.canvas.stack-layout { flex-direction: column-reverse; align-items: center; justify-content: flex-start; }
+.canvas.stack-layout .bar { width: 200px; height: 45px !important; border-radius: 6px; align-items: center; padding-top: 0; color: #fff; }
+
+.graph-node {
+    position: absolute; width: 50px; height: 50px; background: var(--bg-input);
+    border: 2px solid var(--accent-neon); border-radius: 50%; display: flex;
+    justify-content: center; align-items: center; font-family: monospace; font-weight: bold;
+    z-index: 5; transition: background 0.3s, border-color 0.3s;
+}
+.graph-node.visited { border-color: var(--accent-success); background: rgba(0,255,135,0.1); }
+.graph-node.active-node { border-color: var(--accent-active); background: rgba(255,0,127,0.2); }
+
+.svg-edge-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }

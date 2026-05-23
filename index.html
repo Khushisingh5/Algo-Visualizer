@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Algorithm Engineering Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. AUTHENTICATION LAYER -->
+    <div id="auth-container" class="auth-wrapper">
+        <div class="auth-box">
+            <div class="brand-header">
+                <span class="logo-dot"></span>
+                <h2 id="auth-title">Welcome Student</h2>
+            </div>
+            <p class="auth-subtitle" id="auth-subtitle">Sign in to initialize the visualization pipeline.</p>
+            
+            <form id="auth-form" onsubmit="handleAuth(event)">
+                <div class="input-group" id="name-group" style="display: none;">
+                    <label>Full Name</label>
+                    <input type="text" id="auth-name" placeholder="Alex Mercer">
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="auth-email" required placeholder="student@academy.com">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-pass" required placeholder="••••••••••••">
+                </div>
+                <button type="submit" id="auth-btn" class="pop-btn">Sign In</button>
+            </form>
+            <p id="auth-toggle-text" class="auth-switch">Don't have an account? <span onclick="toggleAuthMode()">Create one</span></p>
+        </div>
+    </div>
+
+    <!-- 2. WELCOME INTERMEDIARY LANDING HUB -->
+    <div id="welcome-hub" class="auth-wrapper" style="display: none;">
+        <div class="auth-box hub-box">
+            <div class="brand-header">
+                <span class="logo-dot continuous-glow"></span>
+                <h2>Session Initialized</h2>
+            </div>
+            <h1 class="welcome-heading">Welcome back, <span id="user-display-name" class="neon-text">Student</span>!</h1>
+            <p class="hub-subtitle">Your sandbox engineering space is prepared and compiled successfully. Ready to trace multi-datastructure memory footprints.</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">Engine Version</span>
+                    <span class="metric-val">v2.4.0-neon</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Available Modules</span>
+                    <span class="metric-val">6 Core Systems</span>
+                </div>
+            </div>
+
+            <button onclick="enterWorkspace()" class="pop-btn launch-btn">Launch Coding Studio ➔</button>
+        </div>
+    </div>
+
+    <!-- 3. MAIN INTERACTIVE STUDIO DASHBOARD -->
+    <div id="app-container" class="dashboard" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-dot continuous-glow"></div>
+                <h2>AlgoStudio</h2>
+            </div>
+            
+            <div class="control-group">
+                <label for="algo-select">Algorithm Target Module</label>
+                <select id="algo-select" onchange="onAlgoChange()">
+                    <optgroup label="Arrays & Formats">
+                        <option value="array_insert">Array Element Insertion</option>
+                        <option value="stack">Stack (Push / Pop)</option>
+                    </optgroup>
+                    <optgroup label="Sorting & Searching">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="binary">Binary Search</option>
+                    </optgroup>
+                    <optgroup label="Hierarchical Structures">
+                        <option value="tree">Binary Search Tree (BST)</option>
+                        <option value="graph">Graph (BFS / DFS Framework)</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <!-- DYNAMIC USER INPUT CONSOLE -->
+            <div class="control-group input-console">
+                <label>Custom Vector Input Data</label>
+                <div class="input-row">
+                    <input type="text" id="custom-input-field" placeholder="e.g., 25, 40, 15, 80, 55">
+                    <button onclick="loadUserInput()" class="sec-btn sub-btn">Load</button>
+                </div>
+                <small class="hint">Provide comma-separated numbers (15-95)</small>
+            </div>
+
+            <!-- ENGINE RUNTIME OPTIONS -->
+            <div class="control-group" id="runtime-arg-group">
+                <label id="arg-input-label">Search / Target Element</label>
+                <input type="number" id="runtime-argument" value="40" min="1" max="100">
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label>Simulation Pace</label>
+                    <span id="speed-value">250ms</span>
+                </div>
+                <input type="range" id="speed-slider" min="50" max="1500" value="250" step="50">
+            </div>
+
+            <div class="action-buttons">
+                <button onclick="generateRandomDataset()" class="sec-btn">Randomize Sandbox</button>
+                <button id="start-btn" onclick="runAlgorithm()" class="pop-btn">Execute Pipeline</button>
+            </div>
+            
+            <button onclick="logout()" class="logout-btn">✕ Terminate Session</button>
+        </aside>
+
+        <!-- OUTPUT ENVIRONMENT -->
+        <main class="visualizer-area">
+            <div class="terminal-header">
+                <div class="window-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-amber"></span>
+                    <span class="dot-green"></span>
+                </div>
+                <div id="status-banner" class="status-box">System online. Load dataset metrics or execute core modules.</div>
+            </div>
+            <div id="visualizer-canvas" class="canvas"></div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
